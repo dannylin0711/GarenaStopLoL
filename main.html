@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<head>
+    <title>G社滾蛋倒數</title>
+    <link rel="stylesheet" href="bulma.min.css">
+</head>
+
+<body>
+    <div class="container" style="top:10vh; text-align:center">
+        <h1 class="title" id="title">距離Garena結束英雄聯盟營運還有</h1>
+        <div class="notification" style="font-size: 3vw;" id="countdown">
+            <span id="day">0</span>天
+            <span id="hr">0</span>小時
+            <span id="m">0</span>分
+            <span id="s">0</span>秒
+        </div>
+        <progress class="progress is-large is-info" value="0" max="100"></progress>
+        <script>
+            var countDownDate = new Date("2023/1/6").getTime();
+            var x = setInterval(function() {
+                var now = new Date().getTime();
+                var distance = countDownDate - now;
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                //document.getElementById("countdown").innerHTML = days + "天 " + hours + "小時 " +minutes + "分 " + seconds + "秒 ";
+                document.getElementById("day").innerHTML = days;
+                document.getElementById("hr").innerHTML = hours;
+                document.getElementById("m").innerHTML = minutes;
+                document.getElementById("s").innerHTML = seconds;
+
+                var progress = 100 - (distance / (1000 * 60 * 60 * 24) * 100);
+                document.querySelector(".progress").value = progress;
+
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("countdown").innerHTML = "G社已停止營運英雄聯盟";
+                    document.getElementById("title").innerHTML = "";
+                    document.getElementById("countdown").classList.add("is-danger");
+                    document.querySelector(".progress").value = 100;
+                    document.querySelector(".progress").style.display = "none";
+                }
+            }, 1000);
+        </script>
+    </div>
+</body>
