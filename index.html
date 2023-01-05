@@ -3,6 +3,24 @@
 <head>
     <title>G社滾蛋倒數</title>
     <link rel="stylesheet" href="bulma.min.css">
+    <style>
+        .hurray {
+            animation: hurray 3s infinite;
+            top: 30vh
+        }
+        
+        @keyframes hurray {
+            0% {
+                transform: rotate(0deg) scale(1);
+            }
+            50% {
+                transform: rotate(360deg) scale(1.5);
+            }
+            100% {
+                transform: rotate(360deg) scale(1);
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -42,6 +60,7 @@
                     document.getElementById("countdown").innerHTML = "G社已停止營運英雄聯盟";
                     document.getElementById("title").innerHTML = "";
                     document.getElementById("countdown").classList.add("is-danger");
+                    document.getElementById("countdown").classList.add("hurray");
                     document.querySelector(".progress").value = 100;
                     document.querySelector(".progress").style.display = "none";
                 }
